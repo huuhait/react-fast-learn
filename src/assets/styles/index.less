@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'URWDIN-Regular';
+  src: url('../fonts/URWDIN-Regular.eot');
+  src: local('URW DIN Regular'), local('URWDIN-Regular'),
+      url('../fonts/URWDIN-Regular.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/URWDIN-Regular.woff2') format('woff2'),
+      url('../fonts/URWDIN-Regular.woff') format('woff'),
+      url('../fonts/URWDIN-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'URWDIN-Medium';
+  src: url('../fonts/URWDIN-Medium.eot');
+  src: local('URW DIN Medium'), local('URWDIN-Medium'),
+      url('../fonts/URWDIN-Medium.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/URWDIN-Medium.woff2') format('woff2'),
+      url('../fonts/URWDIN-Medium.woff') format('woff'),
+      url('../fonts/URWDIN-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
+
+.bold-text {
+  font-family: URWDIN-Medium,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-weight: 500;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0.5rem;
+  font-family: URWDIN-Medium,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+input {
+  border: none;
+
+  &:focus, &:focus-visible {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+*:disabled {
+  cursor: not-allowed;
+}
+
+.text {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
+
+select {
+  background-color: transparent;
+  border: 1px solid #e9e9e9;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 0 8px;
+  height: 35px;
+  outline: none;
+}
+
+textarea {
+  border: 1px solid #e9e9e9;
+  outline: none;
+  padding: 0 8px;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  line-height: 1.5;
+}

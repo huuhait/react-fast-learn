@@ -1,0 +1,36 @@
+.product-item {
+  &-image {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  &-content {
+    padding: 16px 0;
+    text-align: center;
+  }
+  &-title {
+    font-size: 18px;
+  }
+  &-price {
+    color: @primary-color;
+    font-size: 16px;
+    margin-top: 4px;
+    &-old {
+      font-size: 14px;
+      text-decoration: line-through;
+    }
+  }
+  &-link {
+    display: inline-block;
+    background-color: @primary-color;
+    color: #fff;
+    font-size: 14px;
+    padding: 4px 8px;
+    margin-top: 12px;
+    transition: all 0.3s;
+    &:hover {
+      background-color: rgba(@primary-color, 0.75)
+    }
+  }
+}

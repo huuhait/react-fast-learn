@@ -1,0 +1,132 @@
+@gray-color: rgb(144, 147, 151);
+@action-color: rgb(168, 165, 165);
+@border-color: #e9e9e9;
+.table {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  border: 1px solid @border-color;
+  padding-bottom: 24px;
+  &-title {
+    position: relative;
+    padding: 12px 16px;
+    font-size: 20px;
+    &::after {
+      position: absolute;
+      content: "";
+      background-color: rgb(138, 143, 150);
+      width: 100px;
+      height: 3px;
+      left: 16px;
+      bottom: 8px;
+    }
+  }
+  &-empty {
+    color: @gray-color;
+    font-size: 16px;
+    i {
+      font-size: 100px;
+    }
+  }
+  &-hoverable &-row {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+  &-scrollable {
+    .table-head {
+      position: absolute;
+      & + .table-content {
+        top: 32px;
+        height: calc(100% - 32px);
+      }
+    }
+    .table-content {
+      position: absolute;
+      top: 0;
+      overflow-y: auto;
+      height: 100%;
+    }
+  }
+  &-headable &-content {
+    height: calc(100% - 32px);
+  }
+  &-head {
+    position: relative;
+    color: @gray-color;
+    user-select: none;
+    &-sortable {
+      position: relative;
+      padding-right: 16px;
+      cursor: pointer;
+    }
+    &-sort-caret {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 32px;
+      font-size: 9px;
+      > i {
+        position: absolute;
+        transform: translateX(-100%) scale(.5);
+        opacity: 0.5;
+        &.active {
+          opacity: 1;
+          color: @action-color;
+        }
+      }
+      .up {
+        top: 2px;
+      }
+      .down {
+        bottom: 15px;
+      }
+    }
+  }
+  &-content {
+    position: relative;
+    width: 100%;
+  }
+  &-head, &-row {
+    display: flex;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 45px;
+    line-height: 45px;
+    border-bottom: 1px solid @border-color;
+    > span {
+      flex: 1;
+    }
+  }
+  &-row {
+    position: relative;
+    &-col {
+      display: flex;
+      align-items: center;
+      &-align-left {
+        justify-content: start;
+      }
+      &-align-center {
+        justify-content: center;
+      }
+      &-align-right {
+        justify-content: end;
+      }
+      &-content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+    }
+  }
+  a.table-row {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
