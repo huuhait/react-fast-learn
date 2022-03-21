@@ -1,32 +1,35 @@
-import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation, useParams } from 'react-router-dom'
-import './App.css'
-import Layout from './components/Layout'
-import Footer from './layouts/Footer'
-import Header from './layouts/Header'
-import DanhMuc from './pages/DanhMuc'
-import GioHang from './pages/GioHang'
-import Home from './pages/Home'
-import Product from './pages/Product'
-import usePublicStore from './stores/public'
+import { useEffect, useState } from 'react';
+import {
+  Route, Routes,
+} from 'react-router-dom';
+import Layout from '~/components/Layout';
+import Footer from '~/layouts/Footer';
+import Header from '~/layouts/Header';
+import DanhMuc from '~/pages/DanhMuc';
+import GioHang from '~/pages/GioHang';
+import Home from '~/pages/Home';
+import Login from '~/pages/Login';
+import Product from '~/pages/Product';
+import Search from '~/pages/Search';
+import usePublicStore from '~/stores/public';
 
-const App = () => {
-  const publicStore = usePublicStore()
-  const [loading, setLoading] = useState(() => true)
+function App() {
+  const publicStore = usePublicStore();
+  const [loading, setLoading] = useState(() => true);
 
   useEffect(() => {
     (async function () {
-      setLoading(true)
+      setLoading(true);
 
       await Promise.all([
         publicStore.fetchProducts(),
         publicStore.fetchCategories(),
-        publicStore.fetchSlideShow()
-      ])
+        publicStore.fetchSlideShow(),
+      ]);
 
-      setLoading(false)
-    }())
-  }, [])
+      setLoading(false);
+    }());
+  }, []);
 
   return (
     <Layout>
@@ -42,12 +45,14 @@ const App = () => {
               <Route path=":id" element={<Product />} />
             </Route>
             <Route path="/gio-hang" element={<GioHang />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/search" element={<Search />} />
           </Routes>
           <Footer />
         </>
       )}
     </Layout>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
-import { Product } from "../types"
+import { Link } from 'react-router-dom';
+import { Product } from '~/types';
 
 interface Props {
   product: Product
   className?: string
 }
 
-const ProductItem = ({product, className}: Props) => {
+function ProductItem({ product, className }: Props) {
   return (
     <div className="product-item">
       <Link to={`/product/${product.id}`} className={`block border border-gray-300 ${className}`}>
@@ -19,11 +19,14 @@ const ProductItem = ({product, className}: Props) => {
             {product.name}
           </div>
           <div className="product-item-price">
-            <span v-if="product.discount > 0" className="product-item-price-old">
-              {Number(product.price).toLocaleString()}đ
+            <span v-if="product.discount > 0" className="product-item-price-old mr-2">
+              {Number(product.price).toLocaleString()}
+              đ
             </span>
             <span className="product-item-price-now bold-text">
-              {(Number(product.price) - (Number(product.price) * product.discount)).toLocaleString()} đ
+              {(Number(product.price) - (Number(product.price) * product.discount)).toLocaleString()}
+              {' '}
+              đ
             </span>
           </div>
 
@@ -33,7 +36,7 @@ const ProductItem = ({product, className}: Props) => {
         </div>
       </Link>
     </div>
-  )
+  );
 }
 
-export default ProductItem
+export default ProductItem;

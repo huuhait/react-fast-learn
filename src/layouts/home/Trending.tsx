@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import Container from "../../components/Container"
+import { Link } from 'react-router-dom';
+import Container from '~/components/Container';
 
-const Trending = () => {
+function Trending() {
   return (
     <Container className="trending-watch flex">
       <Link to="/danh-muc/do-ho-nam" className="trending-watch-item relative flex-1 mr-4 nam">
@@ -17,7 +17,7 @@ const Trending = () => {
         <div className="bg" />
       </Link>
     </Container>
-  )
+  );
 }
 
-export default Trending
+export default Trending;

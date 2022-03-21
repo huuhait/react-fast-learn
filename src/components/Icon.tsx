@@ -4,10 +4,10 @@ interface Props {
   onClick?: React.MouseEventHandler<HTMLElement>
 }
 
-const Icon = (props: Props) => {
+function Icon(props: Props) {
   return (
     <i className={`z-icon-${props.type} ${props.className}`} onClick={props.onClick} />
-  )
+  );
 }
 
-export default Icon
+export default Icon;

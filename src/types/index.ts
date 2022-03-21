@@ -13,20 +13,20 @@ export type SlideShow = {
 }
 
 export type Product = {
-  id:          number;
-  categoryId:  number;
-  name:        string;
-  price:       number;
-  discount:    number;
+  id: number;
+  categoryId: number;
+  name: string;
+  price: number;
+  discount: number;
   description: string;
-  image:       string;
-  created_at:  string;
-  updated_at:  string;
+  image: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export type Category = {
-  id:         number;
-  name:       string;
+  id: number;
+  name: string;
   created_at: string;
   updated_at: string;
 }
@@ -40,6 +40,12 @@ export enum Align {
 export enum SortType {
   Number = 'Number',
   String = 'String',
+}
+
+export enum SortKind {
+  Up = 'up',
+  Down = 'down',
+  None = 'none',
 }
 
 export enum Format {

@@ -1,11 +1,11 @@
-import Container from "../../components/Container"
-import ProductItem from "../../components/ProductItem"
-import Swiper from "../../components/Swiper"
-import SwiperSlide from "../../components/SwiperSlide"
-import usePublicStore from "../../stores/public"
+import Container from '~/components/Container';
+import ProductItem from '~/components/ProductItem';
+import Swiper from '~/components/Swiper';
+import SwiperSlide from '~/components/SwiperSlide';
+import usePublicStore from '~/stores/public';
 
-const SaleProducts = () => {
-  const products = usePublicStore(state => state.products)
+function SaleProducts() {
+  const products = usePublicStore((state) => state.products);
 
   return (
     <Container className="sale-products mt-10">
@@ -19,17 +19,15 @@ const SaleProducts = () => {
             loop: true,
           }}
         >
-          {products.map((product, index) => {
-            return (
-              <SwiperSlide key={index}>
-                <ProductItem className="flex-1" product={product} />
-              </SwiperSlide>
-            )
-          })}
+          {products.map((product) => (
+            <SwiperSlide key={product.id}>
+              <ProductItem className="flex-1" product={product} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </Container>
-  )
+  );
 }
 
-export default SaleProducts
+export default SaleProducts;

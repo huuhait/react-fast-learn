@@ -1,14 +1,14 @@
-import config from "../config";
-import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import config from '../config';
 
-const jsonToParam = (json: any, first_str = "?") => {
-  let parts = [];
-  for (var i in json) {
+const jsonToParam = (json: any, first_str = '?') => {
+  const parts = [];
+  for (const i in json) {
     if (json.hasOwnProperty(i) && json[i]) {
-      parts.push(encodeURIComponent(i) + "=" + encodeURIComponent(json[i]));
+      parts.push(`${encodeURIComponent(i)}=${encodeURIComponent(json[i])}`);
     }
   }
-  return parts.length ? first_str + parts.join("&") : "";
+  return parts.length ? first_str + parts.join('&') : '';
 };
 
 const formatError = async (error: any) => {
@@ -16,13 +16,13 @@ const formatError = async (error: any) => {
   // const errors: string[] = response.data.errors;
 
   // for await (const message of errors) {
-    
+
   // }
 };
 
 const csrf_headers = () => {
-  const csrf_token = localStorage.getItem("csrf_token");
-  const headers = { "X-CSRF-Token": csrf_token };
+  const csrf_token = localStorage.getItem('csrf_token');
+  const headers = { 'X-CSRF-Token': csrf_token };
 
   return csrf_token ? headers : {};
 };
@@ -30,17 +30,18 @@ const csrf_headers = () => {
 const getClient = (baseURL: string) => {
   const client = axios.create({ baseURL, headers: csrf_headers() });
   client.interceptors.response.use(
-    response => Promise.resolve(response),
-    error => {
+    (response) => Promise.resolve(response),
+    (error) => {
       formatError(error);
       return Promise.reject(error);
-    }
+    },
   );
   return client;
 };
 
 class ApiClient {
   private client: AxiosInstance;
+
   constructor() {
     this.client = getClient(config.api_url);
   }
@@ -48,8 +49,8 @@ class ApiClient {
   async get(url: string, data: any = {}, conf: AxiosRequestConfig = {}) {
     try {
       const response = await this.client.get(
-        url + jsonToParam(data, url.includes("?") ? "&" : "?"),
-        conf
+        url + jsonToParam(data, url.includes('?') ? '&' : '?'),
+        conf,
       );
       return Promise.resolve(response);
     } catch (error) {
@@ -62,9 +63,9 @@ class ApiClient {
       const response = await this.client.delete(
         url,
         {
-          data: data,
-          ...conf
-        }
+          data,
+          ...conf,
+        },
       );
       return Promise.resolve(response);
     } catch (error) {

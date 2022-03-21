@@ -1,24 +1,26 @@
-import { useEffect } from "react";
-import type { SwiperOptions } from 'swiper'
-import SwiperJS from 'swiper'
-import 'swiper/css'
+import { useEffect, useState } from 'react';
+import type { SwiperOptions } from 'swiper';
+import SwiperJS from 'swiper';
+import 'swiper/css';
 
 interface Props {
   options: SwiperOptions;
   className?: string
 }
 
-const Swiper = (props: React.PropsWithChildren<Props>) => {
+function Swiper(props: React.PropsWithChildren<Props>) {
+  const [swiper, setSwiper] = useState<SwiperJS>();
+
   useEffect(() => {
-    const swiper = new SwiperJS(".swiper", {
+    setSwiper(new SwiperJS('.swiper', {
       direction: 'horizontal',
       ...props.options,
-    })
+    }));
 
     return (() => {
-      swiper.destroy()
-    })
-  }, [])
+      swiper?.destroy();
+    });
+  }, []);
 
   return (
     <div className={`swiper ${props.className}`}>
@@ -26,7 +28,7 @@ const Swiper = (props: React.PropsWithChildren<Props>) => {
         {props.children}
       </div>
     </div>
-  )
+  );
 }
 
-export default Swiper
+export default Swiper;

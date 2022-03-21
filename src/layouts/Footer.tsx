@@ -1,8 +1,8 @@
-import { AtSymbolIcon, LocationMarkerIcon, PhoneIcon } from "@heroicons/react/outline"
-import Container from "../components/Container"
-import "../assets/styles/layouts/footer.less"
+import { AtSymbolIcon, LocationMarkerIcon, PhoneIcon } from '@heroicons/react/outline';
+import Container from '~/components/Container';
+import '~/assets/styles/layouts/footer.less';
 
-const Footer = () => {
+function Footer() {
   return (
     <div className="footer">
       <div className="footer-body block w-full border-b border-gray-500">
@@ -12,13 +12,19 @@ const Footer = () => {
               THÔNG TIN LIÊN HỆ
             </div>
             <div className="footer-nav-item text-sm flex">
-              <LocationMarkerIcon className="w-4 h-4 mr-1" /> 319 C16 Lý Thường Kiệt, Phường 15, Quận 11, Tp.HCM
+              <LocationMarkerIcon className="w-4 h-4 mr-1" />
+              {' '}
+              319 C16 Lý Thường Kiệt, Phường 15, Quận 11, Tp.HCM
             </div>
             <div className="footer-nav-item text-sm flex">
-              <PhoneIcon className="w-4 h-4 mr-1" /> 1900.12548
+              <PhoneIcon className="w-4 h-4 mr-1" />
+              {' '}
+              1900.12548
             </div>
             <div className="footer-nav-item text-sm flex">
-              <AtSymbolIcon className="w-4 h-4 mr-1" /> fake@fake.com
+              <AtSymbolIcon className="w-4 h-4 mr-1" />
+              {' '}
+              fake@fake.com
             </div>
           </div>
           <div className="footer-nav flex-1">
@@ -82,7 +88,7 @@ const Footer = () => {
         © I ĐÔN NÔ
       </Container>
     </div>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

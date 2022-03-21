@@ -3,14 +3,15 @@ interface Props {
   placeholder?: string
   type?: string
   onChange: React.ChangeEventHandler<HTMLInputElement>
+  className?: string
 }
 
-const Input = (props: Props) => {
+function Input(props: Props) {
   return (
-    <div className="input">
+    <div className={`input ${props.className}`}>
       <input value={props.value} type={props.type} placeholder={props.placeholder} onChange={props.onChange} />
     </div>
-  )
+  );
 }
 
-export default Input
+export default Input;

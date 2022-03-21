@@ -1,18 +1,15 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-import logo from "../assets/img/logo.png"
-import "../assets/styles/layouts/header.less"
-import Container from "../components/Container"
-import Input from "../components/Input"
-import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline'
-import Button from "../components/Button"
+import { SearchIcon, ShoppingBagIcon } from '@heroicons/react/outline';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '~/assets/img/logo.png';
+import '~/assets/styles/layouts/header.less';
+import Button from '~/components/Button';
+import Container from '~/components/Container';
+import Input from '~/components/Input';
 
-const Header = () => {
-  const [search, setSearch] = useState(() => '')
-
-  useEffect(() => {
-    console.log(search)
-  }, [search])
+function Header() {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState(() => '');
 
   return (
     <div className="header">
@@ -21,7 +18,14 @@ const Header = () => {
           <Link to="/" className="header-logo">
             <img src={logo} />
           </Link>
-          <form className="header-search">
+          <form
+            className="header-search"
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              navigate(`/search?name=${search}`);
+            }}
+          >
             <Input value={search} onChange={(e) => setSearch(e.target.value)} />
             <Button>
               <SearchIcon className="w-6 h-6 mx-auto" />
@@ -31,7 +35,7 @@ const Header = () => {
             <Link to="/gio-hang" className="header-cart">
               <ShoppingBagIcon className="w-10 h-10" />
               <span className="header-cart-info">
-                7  
+                7
               </span>
             </Link>
             <Link to="/login" className="ml-4 bg-gray-100 rounded px-2 py-1">
@@ -59,7 +63,7 @@ const Header = () => {
         </Container>
       </div>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;
