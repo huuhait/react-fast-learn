@@ -51,5 +51,6 @@ module.exports = {
     'guard-for-in': 'off',
     'react/no-unescaped-entities': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };

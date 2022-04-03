@@ -84,3 +84,13 @@ export type Cart = {
   product_id: number
   quantity: number
 }
+
+export type User = {
+  id?: number;
+  email: string;
+  password: string;
+  fullname: string;
+  address: string;
+  created_at?: Date;
+  updated_at?: Date;
+}

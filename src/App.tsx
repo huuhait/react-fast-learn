@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-  Route, Routes,
+  Route, Routes, useLocation,
 } from 'react-router-dom';
 import Layout from '~/components/Layout';
 import Footer from '~/layouts/Footer';
@@ -12,10 +12,15 @@ import Login from '~/pages/Login';
 import Product from '~/pages/Product';
 import Search from '~/pages/Search';
 import usePublicStore from '~/stores/public';
+import Admin from './pages/Admin';
+import User from './pages/admin/user/User';
+import Users from './pages/admin/Users';
 
 function App() {
   const publicStore = usePublicStore();
   const [loading, setLoading] = useState(() => true);
+
+  const { pathname } = useLocation();
 
   useEffect(() => {
     (async function () {
@@ -35,7 +40,7 @@ function App() {
     <Layout>
       {loading ? 'Loading...' : (
         <>
-          <Header />
+          {pathname.includes('/admin') ? null : <Header />}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/danh-muc">
@@ -47,8 +52,15 @@ function App() {
             <Route path="/gio-hang" element={<GioHang />} />
             <Route path="/login" element={<Login />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/admin" element={<Admin />}>
+              <Route path="users">
+                <Route path="" element={<Users />} />
+                <Route path="create" element={<User type="create" />} />
+                <Route path=":id" element={<User type="update" />} />
+              </Route>
+            </Route>
           </Routes>
-          <Footer />
+          {pathname.includes('/admin') ? null : <Footer />}
         </>
       )}
     </Layout>

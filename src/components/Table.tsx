@@ -233,34 +233,30 @@ function Table<T>(props: Props<T>) {
           }
           return dataFilter().map((item, index) => (
             <TableRow key={index} selected={indexSelected() === index} isLink={props.isLink} to={routerLink(item)} onClick={props.onClick}>
-              {
-                  props.columns.map((column) => (
-                    <span
-                      className={`table-row-col table-row-col-align-${column.align || 'left'} ${column.key.split('.')[column.key.split('.').length - 1]} ${column.class}`}
-                      key={column.key}
-                    >
-                      {
-                        column.scopedSlots && props.scopedSlotsRenderFunc ? props.scopedSlotsRenderFunc(item, column)
-                          : (
-                            <span className="table-row-col-content">
-                              {(() => {
-                                if (column.formatBy === Format.DateTime) {
-                                  return getValueByKey(column.key, item, column.parse).format('YYYY-MM-DD hh:mm:ss');
-                                } if (column.formatBy === Format.Time) {
-                                  return getValueByKey(column.key, item, column.parse).format('hh:mm:ss');
-                                } if (column.toUpper) {
-                                  return getValueByKey(column.key, item, column.parse).toUpperCase();
-                                } if (column.toLower) {
-                                  return getValueByKey(column.key, item, column.parse).toLowerCase();
-                                }
-                                return getValueByKey(column.key, item, column.parse, column.precision);
-                              })()}
-                            </span>
-                          )
-                      }
-                    </span>
-                  ))
-                }
+              {props.columns.map((column) => (
+                <span
+                  className={`table-row-col table-row-col-align-${column.align || 'left'} ${column.key.split('.')[column.key.split('.').length - 1]} ${column.class}`}
+                  key={column.key}
+                >
+                  {column.scopedSlots && props.scopedSlotsRenderFunc ? props.scopedSlotsRenderFunc(item, column)
+                    : (
+                      <span className="table-row-col-content">
+                        {(() => {
+                          if (column.formatBy === Format.DateTime) {
+                            return getValueByKey(column.key, item, column.parse).format('YYYY-MM-DD hh:mm:ss');
+                          } if (column.formatBy === Format.Time) {
+                            return getValueByKey(column.key, item, column.parse).format('hh:mm:ss');
+                          } if (column.toUpper) {
+                            return getValueByKey(column.key, item, column.parse).toUpperCase();
+                          } if (column.toLower) {
+                            return getValueByKey(column.key, item, column.parse).toLowerCase();
+                          }
+                          return getValueByKey(column.key, item, column.parse, column.precision);
+                        })()}
+                      </span>
+                    )}
+                </span>
+              ))}
             </TableRow>
           ));
         })()}
