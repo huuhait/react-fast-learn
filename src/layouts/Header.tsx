@@ -26,7 +26,7 @@ function Header() {
               navigate(`/search?name=${search}`);
             }}
           >
-            <Input value={search} onChange={(e) => setSearch(e.target.value)} />
+            <Input value={search} placeholder="Tìm kiếm" onChange={(e) => setSearch(e.target.value)} />
             <Button>
               <SearchIcon className="w-6 h-6 mx-auto" />
             </Button>
@@ -53,11 +53,11 @@ function Header() {
             <Link to="/" className="header-nav-item bold-text">
               TRANG CHỦ
             </Link>
-            <Link to="/danh-muc/dong-ho-nam" className="header-nav-item bold-text">
-              ĐỒNG HỒ NAM
+            <Link to="/danh-muc/apple" className="header-nav-item bold-text">
+              APPLE
             </Link>
-            <Link to="/danh-muc/dong-ho-nu" className="header-nav-item bold-text">
-              ĐỒNG HỒ NỮ
+            <Link to="/danh-muc/xiaomi" className="header-nav-item bold-text">
+              XIAOMI
             </Link>
           </div>
         </Container>

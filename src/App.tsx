@@ -9,10 +9,14 @@ import DanhMuc from '~/pages/DanhMuc';
 import GioHang from '~/pages/GioHang';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
-import Product from '~/pages/Product';
+import ProductInfo from '~/pages/Product';
 import Search from '~/pages/Search';
 import usePublicStore from '~/stores/public';
 import Admin from './pages/Admin';
+import Product from './pages/admin/product/Product';
+import Products from './pages/admin/Products';
+import SlideShows from './pages/admin/SlideShow';
+import SlideShow from './pages/admin/slideshow/SlideShow';
 import User from './pages/admin/user/User';
 import Users from './pages/admin/Users';
 
@@ -47,7 +51,7 @@ function App() {
               <Route path=":danhmuc" element={<DanhMuc />} />
             </Route>
             <Route path="/product">
-              <Route path=":id" element={<Product />} />
+              <Route path=":id" element={<ProductInfo />} />
             </Route>
             <Route path="/gio-hang" element={<GioHang />} />
             <Route path="/login" element={<Login />} />
@@ -57,6 +61,16 @@ function App() {
                 <Route path="" element={<Users />} />
                 <Route path="create" element={<User type="create" />} />
                 <Route path=":id" element={<User type="update" />} />
+              </Route>
+              <Route path="products">
+                <Route path="" element={<Products />} />
+                <Route path="create" element={<Product type="create" />} />
+                <Route path=":id" element={<Product type="update" />} />
+              </Route>
+              <Route path="slideshow">
+                <Route path="" element={<SlideShows />} />
+                <Route path="create" element={<SlideShow type="create" />} />
+                <Route path=":id" element={<SlideShow type="update" />} />
               </Route>
             </Route>
           </Routes>

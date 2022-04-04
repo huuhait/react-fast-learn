@@ -1,18 +1,19 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
+import { UserIcon } from '@heroicons/react/outline';
 import Card from '~/components/Card';
 import FormRow from '~/components/FormRow';
 import FormRowLabel from '~/components/FormRowLabel';
-import Icon from '~/components/Icon';
 import Button from '~/components/Button';
 import ApiClient from '~/library/ApiClient';
 import type { User } from '~/types';
+import Input from '~/components/Input';
 
 function UserPage(props: { type: 'update' | 'create' }) {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User>({} as User);
   const { id } = useParams();
-  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   async function getUser() {
     try {
@@ -24,31 +25,35 @@ function UserPage(props: { type: 'update' | 'create' }) {
     }
   }
 
-  async function createUser(payload: User) {
+  async function createUser() {
     try {
       await new ApiClient().post('/users', {
-        email: payload.email,
-        password: payload.password,
-        fullname: payload.fullname,
-        address: payload.address,
-        created_at: payload.created_at,
+        email: user.email,
+        password: user.password,
+        fullname: user.fullname,
+        address: user.address,
+        created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
       });
+      alert('User created successfully');
+      navigate('/admin/users');
     } catch (error) {
       return error;
     }
   }
 
-  async function updateUser(payload: User) {
+  async function updateUser() {
     try {
-      await new ApiClient().put(`/users/${payload.id}`, {
-        email: payload.email,
-        password: payload.password,
-        fullname: payload.fullname,
-        address: payload.address,
-        created_at: payload.created_at,
+      await new ApiClient().put(`/users/${id}`, {
+        email: user.email,
+        password: user.password,
+        fullname: user.fullname,
+        address: user.address,
+        created_at: user.created_at,
         updated_at: new Date().toISOString(),
       });
+      alert('User updated successfully');
+      navigate('/admin/users');
     } catch (error) {
       return error;
     }
@@ -60,13 +65,26 @@ function UserPage(props: { type: 'update' | 'create' }) {
     }
   }, []);
 
-  function SubmitForm(data: any) {
-    if (props.type === 'update') {
-      updateUser(data);
-    } else {
-      createUser(data);
+  function submitForm(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (user.address && user.email && user.password && user.fullname) {
+      if (props.type === 'update') {
+        updateUser();
+      } else {
+        createUser();
+      }
     }
   }
+
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    setUser({
+      ...user,
+      [name]: value,
+    });
+  };
 
   return (
     <div>
@@ -76,8 +94,8 @@ function UserPage(props: { type: 'update' | 'create' }) {
             ? (
               <div className="text-2xl bold-text mb-8">
                 <div className="flex items-center">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-1 bg-gray-400">
-                    <Icon className="text-white" type="person" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-md bg-gray-400">
+                    <UserIcon className="w-8 h-8 text-white" />
                   </div>
                   <span className="ml-3">
                     <div>{user?.email}</div>
@@ -95,30 +113,42 @@ function UserPage(props: { type: 'update' | 'create' }) {
               </div>
             )
         }
-        <form className="grid px-4 grid-cols-4 gap-8" onSubmit={handleSubmit(SubmitForm)}>
+        <form className="grid px-4 grid-cols-4 gap-8" onSubmit={submitForm}>
           <FormRow>
             <FormRowLabel>
               Email
             </FormRowLabel>
-            <input {...register('email', { required: true })} />
+            <Input name="email" onChange={onInputChange} />
+            <div className="error">
+              {!user.email && 'Email is required'}
+            </div>
           </FormRow>
           <FormRow>
             <FormRowLabel>
               Password
             </FormRowLabel>
-            <input {...register('password', { required: true })} type="password" />
+            <Input name="password" type="password" onChange={onInputChange} />
+            <div className="error">
+              {!user.password && 'Password is required'}
+            </div>
           </FormRow>
           <FormRow>
             <FormRowLabel>
               Full Name
             </FormRowLabel>
-            <input {...register('fullname', { required: true })} />
+            <Input name="fullname" onChange={onInputChange} />
+            <div className="error">
+              {!user.fullname && 'Fullname is required'}
+            </div>
           </FormRow>
           <FormRow>
             <FormRowLabel>
               Address
             </FormRowLabel>
-            <input {...register('address', { required: true })} />
+            <Input name="address" onChange={onInputChange} />
+            <div className="error">
+              {!user.address && 'Address is required'}
+            </div>
           </FormRow>
 
           <FormRow className="col-span-4 flex justify-end">

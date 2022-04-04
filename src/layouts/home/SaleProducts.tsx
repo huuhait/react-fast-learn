@@ -1,7 +1,6 @@
 import Container from '~/components/Container';
 import ProductItem from '~/components/ProductItem';
-import Swiper from '~/components/Swiper';
-import SwiperSlide from '~/components/SwiperSlide';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import usePublicStore from '~/stores/public';
 
 function SaleProducts() {
@@ -14,10 +13,8 @@ function SaleProducts() {
       </div>
       <div className="sale-products-content">
         <Swiper
-          options={{
-            slidesPerView: 4,
-            loop: true,
-          }}
+          slidesPerView={4}
+          loop={true}
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>

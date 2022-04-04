@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '~/components/Button';
 import Table from '~/components/Table';
 import ApiClient from '~/library/ApiClient';
 import {
@@ -69,12 +70,19 @@ function Users() {
   }, []);
 
   return (
-    <Table
-      title="Users"
-      dataSource={users}
-      columns={columns}
-      scopedSlotsRenderFunc={scopedSlotsRenderFunc}
-    />
+    <>
+      <div className="flex justify-end mb-4">
+        <Link to="/admin/users/create" className="bg-blue-500 text-white leading-normal px-2 py-1 rounded hover:bg-blue-400 transition duration-300">
+          Create User
+        </Link>
+      </div>
+      <Table
+        title="Users"
+        dataSource={users}
+        columns={columns}
+        scopedSlotsRenderFunc={scopedSlotsRenderFunc}
+      />
+    </>
   );
 }
 

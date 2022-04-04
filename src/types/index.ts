@@ -20,8 +20,14 @@ export type Product = {
   discount: number;
   description: string;
   image: string;
+  status: number;
   created_at: string;
   updated_at: string;
+}
+
+export const enum ProductStatus {
+  Active = 1,
+  Hide = 0
 }
 
 export type Category = {
